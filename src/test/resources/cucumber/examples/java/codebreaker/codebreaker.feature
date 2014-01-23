@@ -16,7 +16,7 @@ Feature: Codebreaker
       | 1235   |
       | 1235   |
     Then I should see the following prompts:
-      | prompt                                                 |
+      | prompts                                                |
       | (Guesses Remaining: 7) What is your guess? Clue: 2220  |
       | (Guesses Remaining: 6) What is your guess? Clue: 2220  |
       | (Guesses Remaining: 5) What is your guess? Clue: 2220  |
@@ -26,36 +26,36 @@ Feature: Codebreaker
       | (Guesses Remaining: 1) What is your guess? Clue: 2220  |
       | You have run out of guesses. The secret code was: 1234 |
 
-#  Scenario: Clues and a loss
-#    Given I start codebreaker with code "1234"
-#    When I run the game with the following inputs:
-#      | inputs |
-#      | 6789   |
-#      | 4321   |
-#      | 9874   |
-#      | 2134   |
-#      | 1235   |
-#      | 1235   |
-#      | 1235   |
-#      | 1235   |
-#    Then I should see the following clues:
-#      | clues                                                  |
-#      | Clue: 0000                                             |
-#      | Clue: 1111                                             |
-#      | Clue: 2000                                             |
-#      | Clue: 2211                                             |
-#      | Clue: 2220                                             |
-#      | Clue: 2220                                             |
-#      | Clue: 2220                                             |
-#      | You have run out of guesses. The secret code was: 1234 |
-#
-#  Scenario: Bad user input response and win output
-#    Given I start codebreaker with code "1234"
-#    When I run the game with the following inputs:
-#      | inputs |
-#      | 111    |
-#      | 1234   |
-#    Then I should see the following clues:
-#      | clues                                        |
-#      | 111 is an invalid guess. Please guess again. |
-#      | You have guessed the secret code. You win!   |
+  Scenario: Clues and a loss
+    Given I start codebreaker with code "1234"
+    When I run the game with the following inputs:
+      | inputs |
+      | 6789   |
+      | 4321   |
+      | 9874   |
+      | 2134   |
+      | 1235   |
+      | 1235   |
+      | 1235   |
+      | 1235   |
+    Then I should see the following prompts:
+      | prompts                                                |
+      | (Guesses Remaining: 7) What is your guess? Clue: 0000  |
+      | (Guesses Remaining: 6) What is your guess? Clue: 1111  |
+      | (Guesses Remaining: 5) What is your guess? Clue: 2000  |
+      | (Guesses Remaining: 4) What is your guess? Clue: 2211  |
+      | (Guesses Remaining: 3) What is your guess? Clue: 2220  |
+      | (Guesses Remaining: 2) What is your guess? Clue: 2220  |
+      | (Guesses Remaining: 1) What is your guess? Clue: 2220  |
+      | You have run out of guesses. The secret code was: 1234 |
+
+  Scenario: Bad user input response and win output
+    Given I start codebreaker with code "1234"
+    When I run the game with the following inputs:
+      | inputs |
+      | 111    |
+      | 1234   |
+    Then I should see the following prompts:
+      | clues                                                                                   |
+      | (Guesses Remaining: 7) What is your guess? 111 is an invalid guess. Please guess again. |
+      | You have guessed the secret code. You win!                                              |

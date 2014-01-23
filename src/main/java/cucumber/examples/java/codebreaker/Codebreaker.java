@@ -14,11 +14,23 @@ public class Codebreaker {
     public String breakcode(String input) {
         numberOfGuesses++;
 
+        if (input.matches(code)) {
+            return "You have guessed the secret code. You win!";
+        }
+
         if (numberOfGuesses == 8 && !input.matches(code)) {
             return "You have run out of guesses. The secret code was: " + code;
         }
 
-        StringBuilder clue = new StringBuilder(), clue2 = new StringBuilder(), clue1 = new StringBuilder(), clue0 = new StringBuilder();
+        StringBuilder clue = new StringBuilder();
+        clue.append("(Guesses Remaining: ").append(8 - numberOfGuesses).append(") What is your guess? ");
+
+        if (!input.matches("\\d{4}")) {
+            clue.append(input).append(" is an invalid guess. Please guess again.");
+            return clue.toString();
+        }
+
+        StringBuilder clue2 = new StringBuilder(), clue1 = new StringBuilder(), clue0 = new StringBuilder();
 
         for (int i = 0; i < input.length(); i++) {
             int index = code.indexOf(input.charAt(i));
@@ -31,6 +43,6 @@ public class Codebreaker {
             }
         }
 
-        return clue.append("(Guesses Remaining: ").append(8 - numberOfGuesses).append(") What is your guess? Clue: ").append(clue2).append(clue1).append(clue0).toString();
+        return clue.append("Clue: ").append(clue2).append(clue1).append(clue0).toString();
     }
 }
